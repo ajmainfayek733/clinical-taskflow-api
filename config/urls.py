@@ -20,8 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from django.http import JsonResponse
+
+def health_check(request):
+    return JsonResponse({"status": "healthy"})
 
 urlpatterns = [
+    path('healthz/', health_check, name='healthz'),
+    path('api/healthz/', health_check, name='api_healthz'),
     path('admin/', admin.site.urls),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
