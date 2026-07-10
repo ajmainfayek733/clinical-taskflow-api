@@ -67,4 +67,3 @@ Use this checklist to validate the backend repository before submission/deployme
 - [x] Upload image, create polygon, delete polygon
 - [x] Save series review for two distinct series and verify isolation
 - [x] Clear one series and verify other series still intact
-
