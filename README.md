@@ -2,12 +2,14 @@
 
 Django 6 + Django REST Framework API for clinical task management and image annotation.
 
-## Requirements
+## Environment versions
 
-- Python 3.11+ (tested on 3.14)
-- pip / venv
+- Python `3.12.8` recommended for deployment (see `runtime.txt`)
+- Python `3.11+` supported for local development
+- Django `6.0.6`, DRF `3.17.1`
+- pip + virtualenv
 
-## Setup
+## Detailed local run steps
 
 ```bash
 cd taskflow-backend
@@ -48,14 +50,13 @@ python manage.py runserver
 
 ## QA checklist
 
-See [`../QA_CHECKLIST.md`](../QA_CHECKLIST.md) for acceptance criteria and demo script.
+See [`./QA_CHECKLIST.md`](./QA_CHECKLIST.md) for acceptance criteria and demo script.
 
-## Challenges faced
+## Villains faced (and how we won)
 
-- **Image dimensions:** Pillow reads width/height on upload for correct canvas letterboxing.
-- **Annotation validation:** normalized `[0,1]` polygon points validated server-side.
-- **User isolation:** all querysets filtered by `request.user` — no cross-user data access.
-- **JWT auth:** SimpleJWT access/refresh tokens for decoupled Next.js frontend.
+The main backend villain was **keeping annotation data accurate and isolated**. Polygon points needed strict shape/coordinate validation and all records had to be fully user-scoped. We defeated this with serializer validation for normalized points, queryset filtering by `request.user`, and per-series identifiers for review/clear operations.
+
+A second villain was **production readiness** (DB portability, static/media behavior, and deployment safety). We overcame it with `dj-database-url` for PostgreSQL/SQLite switching, WhiteNoise static handling, Render build/start scripts, and environment-driven settings for CORS/CSRF/hosts.
 
 ## Deployment on Render
 
