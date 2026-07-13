@@ -27,7 +27,7 @@ python manage.py runserver
 | API      | `http://127.0.0.1:8000/api`       |
 | Swagger  | `http://127.0.0.1:8000/api/docs/` |
 
-- Frontend: [clinical-taskflow-ui](https://github.com/ajmainfayek733/clinical-taskflow-ui)
+- Frontend repo: [clinical-taskflow-ui](https://github.com/ajmainfayek733/clinical-taskflow-ui)
 - Frontend [live](https://taskflow-frontend-0i0z.onrender.com)
 
 ## Demo credentials
