@@ -22,31 +22,34 @@ python manage.py seed_demo_user
 python manage.py runserver
 ```
 
-| Resource | URL |
-|---|---|
-| API | `http://127.0.0.1:8000/api` |
-| Swagger | `http://127.0.0.1:8000/api/docs/` |
+| Resource | URL                               |
+| -------- | --------------------------------- |
+| API      | `http://127.0.0.1:8000/api`       |
+| Swagger  | `http://127.0.0.1:8000/api/docs/` |
+
+- Frontend: [clinical-taskflow-ui](https://github.com/ajmainfayek733/clinical-taskflow-ui)
+- Frontend [live](https://taskflow-frontend-0i0z.onrender.com)
 
 ## Demo credentials
 
-| Field | Value |
-|---|---|
-| Email | `demo.doctor@taskflow.local` |
-| Password | `DoctorDemo123!` |
+| Field    | Value                        |
+| -------- | ---------------------------- |
+| Email    | `demo.doctor@taskflow.local` |
+| Password | `DoctorDemo123!`             |
 
 ## API overview
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| POST | `/api/auth/login/` | JWT login |
-| GET/POST | `/api/tasks/` | Task CRUD (filter `?due_date=`) |
-| PATCH | `/api/tasks/reorder/` | Bulk drag/drop reorder |
-| GET/POST | `/api/images/` | Upload with `patient_id`, `patient_code`, `test_code` |
-| GET/POST | `/api/images/{id}/annotations/` | List/create polygons |
-| DELETE | `/api/annotations/{id}/` | Delete one polygon |
-| DELETE | `/api/images/{id}/annotations/clear/` | Clear image polygons |
-| DELETE | `/api/series-annotations/clear/?patient_id=&patient_code=&test_code=` | Clear all polygons in a series |
-| GET/PATCH | `/api/series-review/` | Series-level notes |
+| Method    | Endpoint                                                              | Purpose                                               |
+| --------- | --------------------------------------------------------------------- | ----------------------------------------------------- |
+| POST      | `/api/auth/login/`                                                    | JWT login                                             |
+| GET/POST  | `/api/tasks/`                                                         | Task CRUD (filter `?due_date=`)                       |
+| PATCH     | `/api/tasks/reorder/`                                                 | Bulk drag/drop reorder                                |
+| GET/POST  | `/api/images/`                                                        | Upload with `patient_id`, `patient_code`, `test_code` |
+| GET/POST  | `/api/images/{id}/annotations/`                                       | List/create polygons                                  |
+| DELETE    | `/api/annotations/{id}/`                                              | Delete one polygon                                    |
+| DELETE    | `/api/images/{id}/annotations/clear/`                                 | Clear image polygons                                  |
+| DELETE    | `/api/series-annotations/clear/?patient_id=&patient_code=&test_code=` | Clear all polygons in a series                        |
+| GET/PATCH | `/api/series-review/`                                                 | Series-level notes                                    |
 
 ## QA checklist
 
@@ -74,10 +77,10 @@ This project is configured for [Render](https://render.com) using the official D
 
 ### Manual web service
 
-| Setting | Value |
-|---|---|
-| Runtime | Python 3 |
-| Build Command | `./build.sh` |
+| Setting       | Value                                                                         |
+| ------------- | ----------------------------------------------------------------------------- |
+| Runtime       | Python 3                                                                      |
+| Build Command | `./build.sh`                                                                  |
 | Start Command | `python -m gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker` |
 
 Required env vars: `DATABASE_URL`, `SECRET_KEY`, `DEBUG=False`, `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS`.
